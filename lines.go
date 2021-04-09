@@ -3,6 +3,10 @@ package lines
 
 // TODO: move linesbuf here
 
+// TODO: configure todos
+
+/* TODO: configure repo */
+
 // Func answers
 func Func() int {
 	return 42
