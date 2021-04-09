@@ -1,11 +1,7 @@
 // Package lines help working with lines of text
 package lines
 
-// TODO: move linesbuf here
-
-// TODO: configure todos
-
-/* # TODO: this line check using sharp char */
+// # TODO: this is the correct wayto write a todo in go
 
 // Func answers
 func Func() int {
