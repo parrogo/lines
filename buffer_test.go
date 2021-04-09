@@ -14,7 +14,7 @@ func TestLinesBuf(t *testing.T) {
 	var buf Buffer
 	if assert.NoError(t, err) {
 		for _, l := range strings.Split(string(content), "\n") {
-			buf.AddLine(l)
+			buf.AddLineF(l)
 		}
 	}
 

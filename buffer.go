@@ -25,12 +25,20 @@ type Buffer struct {
 	buf bytes.Buffer
 }
 
-// AddLine writes a line of text in the buffer.
+// AddLineF writes a line of text in the buffer.
 // The line to append is built calling `fmt.Sprintf`
 // with `lineFormat` and `arguments...`
-func (lines *Buffer) AddLine(lineFormat string, arguments ...interface{}) {
+func (lines *Buffer) AddLineF(lineFormat string, arguments ...interface{}) {
 	line := fmt.Sprintf(lineFormat, arguments...)
+	lines.AddLine(line)
+}
+
+// AddLine writes a line of text in the buffer.
+// A newline is appended at the end of the strigns
+// only if it's not already present.
+func (lines *Buffer) AddLine(line string) {
 	lines.buf.WriteString(line)
+	// # TODO: check if newline is already present.
 	lines.buf.WriteRune('\n')
 }
 
@@ -45,6 +53,7 @@ func (lines *Buffer) AddLine(lineFormat string, arguments ...interface{}) {
 // no truncation of the buffer is done, so that you can
 // retry the method call later.
 func (lines *Buffer) WriteFile(filepath string) error {
+	// # TODO: add a twin method that uses fs.FS
 	f, err := os.OpenFile(filepath, os.O_CREATE|os.O_EXCL|os.O_WRONLY, fs.FileMode(0644))
 	if err != nil {
 		return err
@@ -82,8 +91,12 @@ func (lines *Buffer) Write(dest io.Writer) error {
 	return err
 }
 
-// Discard truncates the lines buffer, so that you can recycle
-// the same Buffer as if it was newly created.
-func (lines *Buffer) Discard() {
-	lines.buf.Truncate(0)
+// Reset truncates the internal lines buffer, so that
+// you can recycle the same Buffer as if it
+// was newly created. Current content of the
+// buffer is returned as a `[]byte`
+func (lines *Buffer) Reset() []byte {
+	defer lines.buf.Truncate(0)
+	return lines.buf.Bytes()
+
 }

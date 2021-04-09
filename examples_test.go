@@ -18,9 +18,9 @@ var fixtureFS, _ = fs.Sub(fixtureRootFS, "fixtures")
 // to console at end using `Write` method.
 func ExampleBuffer_Write() {
 	var lines lines.Buffer
-	lines.AddLine("A simple line")
-	lines.AddLine("Trailing new lines are not needed\n")
-	lines.AddLine("You can use %s arguments", "fmt.Printf")
+	lines.AddLineF("A simple line")
+	lines.AddLineF("Trailing new lines are not needed\n")
+	lines.AddLineF("You can use %s arguments", "fmt.Printf")
 
 	err := lines.Write(os.Stdout)
 	if err != nil {
@@ -35,9 +35,9 @@ func ExampleBuffer_Write() {
 // This example show how to use a lines.Buffer
 func ExampleBuffer_WriteFile() {
 	var lines lines.Buffer
-	lines.AddLine("A simple line")
-	lines.AddLine("Trailing new lines are not needed\n")
-	lines.AddLine("You can use %s arguments", "fmt.Printf")
+	lines.AddLineF("A simple line")
+	lines.AddLineF("Trailing new lines are not needed\n")
+	lines.AddLineF("You can use %s arguments", "fmt.Printf")
 
 	err := lines.WriteFile("/tmp/example")
 	if err != nil {
