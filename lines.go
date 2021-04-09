@@ -5,7 +5,7 @@ package lines
 
 // TODO: configure todos
 
-/* TODO: configure repo */
+/* # TODO: this line check using sharp char */
 
 // Func answers
 func Func() int {
