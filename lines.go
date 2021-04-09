@@ -1,4 +1,4 @@
-// Package lines help working with lines of text
+// Package lines helps working with lines of text
 package lines
 
 // Func answers

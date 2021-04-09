@@ -1,4 +1,4 @@
-# lines
+# 🌈 lines
 
 > Package lines help working with lines of text
 
